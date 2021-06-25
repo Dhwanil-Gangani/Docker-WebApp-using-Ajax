@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Docker WebApp</title>
+
+   <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"></link>
+   <link href="Custom-CSS/dockercss.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body>
+   <div class="container-fluid">
+      <!-- header text -->
+      <h1 class="row justify-content-center pt-3 pb-2">Welcome to Docker WebApp<h1>
+      <!-- box containers --> 
+      <div id="box" class="row">
+         <!-- box 1 start & copy files in containers -->
+         <div id="main" class="col-sm-12 col-md-6 col-lg-4">
+            <h3 class="row justify-content-center pb-4">Start & Copy Files From/In Container</h3>
+            <div class="row">
+               <label for="start_copy_cmd" class="label-control col-5">Enter Ur Usecase :</label>
+               <input id="start_copy_cmd" class="form-control col-6" placeholder="Enter your Requirement"/>
+            </div> 
+            <div class="row pt-2">
+            	<label for="image_name" class="label-control col-5">Image Name :</label>
+	    	<input id="image_name" class="form-control col-6" placeholder="Enter your Image Name"/>
+	    </div>
+            <button class="btn btn-success btn-lg mt-4" onclick="start_docker()"> Execute</button>
+         </div>
+
+         <!-- box 2 List Containers -->
+         <div id="main" class="col-sm-12 col-md-6 col-lg-4">
+            <h3 class="row justify-content-center pb-4">Show Container</h3>
+            <div class="row">
+               <label for="show_cmd" class="label-control col-5">Enter Ur Usecase :</label>
+               <input id="show_cmd" class="form-control col-6" placeholder="Enter your Requirement"/>
+            </div>
+            <button class="btn btn-success btn-lg mt-4" onclick="show_docker()"> Execute</button>
+         </div>
+         <!-- box 3 List Containers -->
+         <div id="main" class="col-sm-12 col-md-6 col-lg-4">
+            <h3 class="row justify-content-center pb-4">Stop or Delete Container</h3>
+            <div class="row">
+               <label for="delete_cmd" class="label-control col-5">Enter Ur Usecase :</label>
+               <input id="delete_cmd" class="form-control col-6" placeholder="Enter your Requirement"/>
+            </div>
+	     <div class="row pt-2">
+                <label for="del_image_name" class="label-control col-5">Image Name :</label>
+                <input id="del_image_name" class="form-control col-6" placeholder="Enter your Image Name to Delete"/>
+            </div>
+            <button class="btn btn-success btn-lg mt-4" onclick="delete_docker()"> Execute</button>
+         </div>
+      </div>
+      <h2 class="row justify-content-center pb-2">Output Area</h2>
+      <pre class="mb-0">
+         <div id="output_box_area" class="row justify-content-center">
+         </div>
+      </pre>
+   </div>
+</body>
+<script>
+   /* start docker container */
+   function start_docker() {
+      var get_value = document.getElementById("start_copy_cmd").value;
+      var image_name = document.getElementById("image_name").value;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://192.168.0.114/cgi-bin/docker_start.py?start_cmd=" + get_value+"&image_name="+image_name, true);
+      xhr.send();
+     // output from above url
+     xhr.onload = function() {
+     var output = xhr.responseText;
+     document.getElementById("output_box_area").innerHTML = output;
+     }
+   }
+
+   /* show docker container */
+   function show_docker() {
+      var get_value = document.getElementById("show_cmd").value;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://192.168.0.114/cgi-bin/docker_show.py?show_list_cmd=" + get_value, true);
+      xhr.send();
+     // output from above url
+     xhr.onload = function() {
+     var output = xhr.responseText;
+     document.getElementById("output_box_area").innerHTML = output;
+     }
+   }
+
+   /* delete docker container */
+   function delete_docker() {
+      var get_value = document.getElementById("delete_cmd").value;
+      var del_image_name = document.getElementById("del_image_name").value;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://192.168.0.114/cgi-bin/docker_delete.py?delete_cont_cmd=" + get_value+"&delete_image_name"+del_image_name, true);
+      xhr.send();
+     // output from above url
+     xhr.onload = function() {
+     var output = xhr.responseText;
+     document.getElementById("output_box_area").innerHTML = output;
+     }
+   }
+</script>
+</html>
+
+
+

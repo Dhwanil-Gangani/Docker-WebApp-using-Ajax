@@ -1,0 +1,37 @@
+body{
+  background-image: url('../photo/background.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.container{
+  height: 45rem;
+  display: grid;
+  align-content: center;
+}
+/* header text */
+h1{
+  color:goldenrod;
+  font-family: cursive;
+  font-size: xxx-large;
+}
+h2{
+  color:dodgerblue;
+  font-family: cursive;
+  font-size: xx-large; 
+}
+/* box */
+div#box{
+  width: 100%;
+}
+div#main{
+  width:40rem;
+  height:25rem;
+  padding: 10px;
+}
+.carousel-img{
+  border-radius: 10px;
+  height: 18rem;
+  max-height: 18rem;
+  cursor: pointer;
+}

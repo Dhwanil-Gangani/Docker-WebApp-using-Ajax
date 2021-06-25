@@ -1,0 +1,50 @@
+body{
+    background-image: url('../photo/background.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  /* header text */
+  h1{
+    color:dodgerblue;
+    font-family: cursive;
+    font-size: xx-large;
+  }
+  /* text area */
+  h3{
+    color:antiquewhite;
+    font-family: cursive;
+    font-size: 1.4rem;
+    color: greenyellow;
+  }
+  h2{
+     color:peru;
+  }
+  /* box */
+  div#box{
+  margin-inline:10px;
+  }
+  div#main{
+  width:35rem;
+  height:12rem;
+  padding: 10px;
+  text-align: center;
+  }
+  /* text-box-control */
+  .label-control{
+     font-size: large;
+     align-items: center;
+     display: flex;
+  }
+  /* output area css */
+  div#output_box_area{
+     background-color:darkgrey;
+     height: 45vh;
+     max-height: 100vh;
+     padding:10px 40px;
+     margin-inline: 20px;
+     border-radius: 5px;
+     font-size: large;
+     font-weight: 600;
+     color: black;
+  }
